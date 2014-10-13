@@ -4,6 +4,7 @@ require 'vendor/autoload.php';
  
 use Parse\ParseClient;
 use Parse\ParseUser;
+use Parse\ParseQuery;
 use Parse\ParseException;
 use Parse\ParseObject;
 use Parse\ParseACL;
@@ -13,15 +14,35 @@ ParseClient::initialize('LicvGZYQ3x9rDtfiDnaNy42GmIJdP0TuoVBJBFZi', 'QmaCbGyfU0c
 
 // == 
 
-// login
+// // user1 login
+// try {
+//     // Do stuff after successful login.
+//     $user = ParseUser::logIn("my name", "my pass");
+// } catch (ParseException $error) {
+//     // The login failed. Check error to see why.
+// }
+// 
+// $privateNote = new ParseObject("Note");
+// $privateNote->set("content", "This note is private!");
+// $privateNote->setACL(ParseACL::createACLWithUser(ParseUser::getCurrentUser()));
+// $privateNote->save();
+
+// user2 login
 try {
-    $user = ParseUser::logIn("my name", "my pass");
     // Do stuff after successful login.
+    $user = ParseUser::logIn("my name2", "my pass2");
 } catch (ParseException $error) {
     // The login failed. Check error to see why.
 }
 
-$privateNote = new ParseObject("Note");
-$privateNote->set("content", "This note is private!");
-$privateNote->setACL(ParseACL::createACLWithUser(ParseUser::getCurrentUser()));
-$privateNote->save();
+$query = new ParseQuery("Note");
+$note = $query->get("cSwhrWL6jq");
+$note->set("content", "update content");
+
+try {
+    $note->save();
+} catch (ParseException $error) {
+    print_r($error);
+}
+
+
