@@ -8,19 +8,15 @@ ParseClient::initialize('LicvGZYQ3x9rDtfiDnaNy42GmIJdP0TuoVBJBFZi', 'QmaCbGyfU0c
 
 
 // == 
-$gameScore = new Parse\ParseObject("GameScore");
- 
 
-$gameScore->set("score", 1337);
-$gameScore->set("playerName", "Sean Plott");
-$gameScore->set("cheatMode", false);
- 
+$query = new Parse\ParseQuery("GameScore");
+
 try {
+      $gameScore = $query->get("u2uyQRLD7d");
+      $gameScore->delete("playerName");
       $gameScore->save();
-        echo 'New object created with objectId: ' . $gameScore->getObjectId();
-} catch (ParseException $ex) { 
-      // Execute any logic that should take place if the save fails.
-      // error is a ParseException object with an error code and message.
-      echo 'Failed to create new object, with error message: ' + $ex->getMessage();
+      // The object was retrieved successfully.
+} catch (ParseException $ex) {
+      // The object was not retrieved successfully.
+      // error is a ParseException with an error code and message.
 }
-
