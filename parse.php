@@ -13,7 +13,14 @@ ParseClient::initialize('LicvGZYQ3x9rDtfiDnaNy42GmIJdP0TuoVBJBFZi', 'QmaCbGyfU0c
 try {
     $user = ParseUser::logIn("my name", "my pass");
     // Do stuff after successful login.
-    print_r($user);
 } catch (ParseException $error) {
     // The login failed. Check error to see why.
+}
+
+$currentUser = ParseUser::getCurrentUser();
+if ($currentUser) {
+    // do stuff with the user
+    print_r($currentUser);
+} else {
+    // show the signup or login page
 }
