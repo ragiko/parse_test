@@ -10,22 +10,10 @@ ParseClient::initialize('LicvGZYQ3x9rDtfiDnaNy42GmIJdP0TuoVBJBFZi', 'QmaCbGyfU0c
 
 
 // == 
-
-
-$user = new ParseUser();
-$user->set(",sername", "my name");
-$user->set("password", "my pass");
-$user->set("email", "email@example.com");
- 
-// other fields can be set just like with ParseObject
-$user->set("phone", "415-392-0202");
- 
 try {
-  $user->signUp();
-  // Hooray! Let them use the app now.
-} catch (ParseException $ex) {
-  // Show the error message somewhere and let the user try again.
-  echo "Error: " . $ex->getCode() . " " . $ex->getMessage();
+    $user = ParseUser::logIn("my name", "my pass");
+    // Do stuff after successful login.
+    print_r($user);
+} catch (ParseException $error) {
+    // The login failed. Check error to see why.
 }
-
-
