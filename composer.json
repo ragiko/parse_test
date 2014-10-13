@@ -1,0 +1,12 @@
+{
+    "name": "tag/parse_test",
+    "authors": [
+        {
+            "name": "Taguchi Hiroaki",
+            "email": "ragiko.complexe@gmail.com"
+        }
+    ],
+    "require" : {
+        "parse/php-sdk" : "1.0.*"
+    }
+}
