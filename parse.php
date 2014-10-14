@@ -15,16 +15,12 @@ ParseClient::initialize('LicvGZYQ3x9rDtfiDnaNy42GmIJdP0TuoVBJBFZi', 'QmaCbGyfU0c
 
 // == 
 
-$userObject = ParseUser::logIn("my name", "my pass");
-// User's location
-$userGeoPoint = $userObject->get("location");
-// Create a query for places
-$query = new ParseQuery("TestObject");
-// Interested in locations near user.
+// Get the user from a non-authenticated method
+$query = ParseUser::query();
+$userAgain = $query->get("Wrj5rDMFxT");
+$userGeoPoint = $userAgain->get("location");
 $query->near("location", $userGeoPoint);
-// Limit what could be a lot of points.
 $query->limit(10);
-// Final array of objects
 $placesObjects = $query->find();
 
 print_r($placesObjects);
